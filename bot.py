@@ -1,8 +1,6 @@
 import asyncio
 from datetime import datetime
 
-from dotenv import load_dotenv
-
 from aiogram import Bot, Dispatcher, Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.filters import CommandStart
@@ -21,7 +19,6 @@ bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
 router = Router()
 dp.include_router(router)
-load_dotenv()
 
 state = {}  # user_id -> {action, student}
 
