@@ -45,11 +45,22 @@ async def students_list(call: CallbackQuery):
     data = load_students()
 
     kb = InlineKeyboardMarkup(inline_keyboard=[])
+
     for sid, s in data.items():
         kb.inline_keyboard.append([
-            InlineKeyboardButton(text=s["name"], callback_data=f"student:{sid}")
+            InlineKeyboardButton(
+                text=s["name"],
+                callback_data=f"student:{sid}"
+            )
         ])
-    kb.inline_keyboard.append([InlineKeyboardButton("⬅ Назад", callback_data="students")])
+
+    # ❗ ВОТ ТУТ БЫЛ БАГ — ИСПРАВЛЕНО
+    kb.inline_keyboard.append([
+        InlineKeyboardButton(
+            text="⬅ Назад",
+            callback_data="students"
+        )
+    ])
 
     await call.message.edit_text("Выбери ученика:", reply_markup=kb)
 
@@ -126,6 +137,7 @@ async def handle_input(message: Message):
             await message.answer("❌ Неверный формат. Попробуй ещё раз.")
             state[message.from_user.id] = data
             return
+
         update_student(sid, "lesson_datetime", dt.strftime("%Y-%m-%d %H:%M"))
         await message.answer("Дата и время обновлены ✅", reply_markup=main_menu())
 
