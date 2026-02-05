@@ -1,0 +1,11 @@
+{
+  "123456789": {
+    "name": "Тима",
+    "class": "WB_7",
+    "subjects": ["Математика", "Немецкий"],
+    "lesson_datetime": "2026-02-10 17:00",
+    "notify_before": 60,
+    "notified": false,
+    "lessons_history": []
+  }
+}
